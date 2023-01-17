@@ -132,6 +132,7 @@ public class UserResourceTest {
         Response response = given().when().get("/users/" + udto.getUserName());
         ResponseBody body = response.getBody();
         System.out.println(body.prettyPrint());
+
         response
                 .then()
                 .assertThat()
