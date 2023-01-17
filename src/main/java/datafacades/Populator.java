@@ -28,6 +28,7 @@ public class Populator {
 
         em.persist(user);
         em.persist(admin);
+        em.persist(mark);
 
         admin.addRole(adminRole);
         user.addRole(userRole);
