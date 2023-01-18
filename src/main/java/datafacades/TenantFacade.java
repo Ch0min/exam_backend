@@ -1,7 +1,6 @@
 package datafacades;
 
 import entities.Tenant;
-import entities.User;
 import errorhandling.API_Exception;
 
 import javax.persistence.EntityManager;

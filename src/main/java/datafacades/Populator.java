@@ -6,8 +6,6 @@ import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Populator {
     public static void populate() throws ParseException {

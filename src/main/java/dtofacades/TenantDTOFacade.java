@@ -1,7 +1,6 @@
 package dtofacades;
 
 import datafacades.TenantFacade;
-import dtos.HouseDTO;
 import dtos.TenantDTO;
 import errorhandling.API_Exception;
 

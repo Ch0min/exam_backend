@@ -2,7 +2,6 @@ package dtofacades;
 
 import datafacades.HouseFacade;
 import dtos.HouseDTO;
-import dtos.RentalDTO;
 import errorhandling.API_Exception;
 
 import javax.persistence.EntityManagerFactory;
