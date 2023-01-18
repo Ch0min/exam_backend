@@ -33,6 +33,12 @@ public class Tenant {
             inverseJoinColumns = @JoinColumn(name = "rental_id"))
     private List<Rental> rentals = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "tenant_house",
+            joinColumns = @JoinColumn(name = "tenant_id"),
+            inverseJoinColumns = @JoinColumn(name = "house_id"))
+    private List<House> houses = new ArrayList<>();
+
     public Tenant() {
     }
 
@@ -49,15 +55,15 @@ public class Tenant {
         this.user = user;
     }
 
-    public Tenant(Integer tenantID, String tenantName, Integer tenantPhone, String tenantJob, User user) {
+    public Tenant(Integer tenantID, String tenantName, Integer tenantPhone, String tenantJob, User user, List<Rental> rentals, List<House> houses) {
         this.tenantID = tenantID;
         this.tenantName = tenantName;
         this.tenantPhone = tenantPhone;
         this.tenantJob = tenantJob;
         this.user = user;
         this.rentals = rentals;
+        this.houses = houses;
     }
-
 
     public List<String> getRentalsAsStrings(){
         if(rentals.isEmpty()) {
@@ -73,6 +79,19 @@ public class Tenant {
             rentalsAsStrings.add(String.valueOf(r.getHouse().getHouseID()));
         }));
         return rentalsAsStrings;
+    }
+
+    public List<String> getHousesAsStrings(){
+        if(houses.isEmpty()) {
+            return null;
+        }
+        List<String> housesAsStrings = new ArrayList<>();
+        houses.forEach((h ->{
+            housesAsStrings.add(h.getHouseAddress());
+            housesAsStrings.add(h.getHouseCity());
+            housesAsStrings.add(String.valueOf(h.getNumberOfRooms()));
+        }));
+        return housesAsStrings;
     }
 
     public Integer getTenantID() {
@@ -123,8 +142,20 @@ public class Tenant {
         this.rentals = rentals;
     }
 
+    public List<House> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(List<House> houses) {
+        this.houses = houses;
+    }
+
     public void addRental(Rental tenantRental) {
         rentals.add(tenantRental);
+    }
+
+    public void addHouse(House tenantHouse) {
+        houses.add(tenantHouse);
     }
 
     @Override
@@ -149,6 +180,7 @@ public class Tenant {
                 ", tenantJob='" + tenantJob + '\'' +
                 ", user=" + user +
                 ", rentals=" + rentals +
+                ", houses=" + houses +
                 '}';
     }
 }

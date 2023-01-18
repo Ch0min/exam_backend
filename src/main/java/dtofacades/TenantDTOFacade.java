@@ -27,6 +27,10 @@ public class TenantDTOFacade {
         return TenantDTO.getTenantDTOs(tenantFacade.getAllTenants());
     }
 
+    public TenantDTO getTenantByID(int tenantID) throws API_Exception {
+        return new TenantDTO(tenantFacade.getTenantByID(tenantID));
+    }
+
     public List<TenantDTO> getTenantsByHouse(int houseID) throws API_Exception {
         return TenantDTO.getTenantDTOs(tenantFacade.getTenantsByHouse(houseID));
     }

@@ -13,6 +13,7 @@ public class TenantDTO {
     private String tenantJob;
     private UserDTO user;
     private List<String> rentals;
+    private List<String> houses;
 
 
     public TenantDTO(Tenant tenant){
@@ -24,6 +25,8 @@ public class TenantDTO {
         this.tenantJob = tenant.getTenantJob();
         this.user = new UserDTO(tenant.getUser());
         this.rentals = tenant.getRentalsAsStrings();
+        this.rentals = tenant.getHousesAsStrings();
+
     }
 
     public Tenant getEntity() {
@@ -36,6 +39,7 @@ public class TenantDTO {
         tenant.setTenantJob(this.tenantJob);
         tenant.setUser(this.user.getEntity());
         tenant.getRentalsAsStrings();
+        tenant.getHousesAsStrings();
 
         return tenant;
     }
@@ -94,6 +98,14 @@ public class TenantDTO {
         this.rentals = rentals;
     }
 
+    public List<String> getHouses() {
+        return houses;
+    }
+
+    public void setHouses(List<String> houses) {
+        this.houses = houses;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -116,6 +128,7 @@ public class TenantDTO {
                 ", tenantJob='" + tenantJob + '\'' +
                 ", user=" + user +
                 ", rentals=" + rentals +
+                ", houses=" + houses +
                 '}';
     }
 }
