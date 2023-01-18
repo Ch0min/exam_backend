@@ -13,11 +13,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UserDTOFacadeTest {
+public class HouseDTOFacadeTest {
     private static EntityManagerFactory emf;
-    private static UserDTOFacade facade;
+    private static HouseDTOFacade facade;
 
     Role userRole, adminRole;
     User admin, user, user2, user3, user4, user5;
@@ -30,18 +30,18 @@ public class UserDTOFacadeTest {
     RentalDTO rdto1, rdto2, rdto3;
     TenantDTO tdto1, tdto2, tdto3, tdto4;
 
-    public UserDTOFacadeTest() {
+    public HouseDTOFacadeTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactoryForTest();
-        facade = UserDTOFacade.getInstance(emf);
+        facade = HouseDTOFacade.getInstance(emf);
     }
 
     @AfterAll
     public static void tearDownClass() {
-        System.out.println("EXECUTION OF ALL TESTS IN USERDTOFACADETESTS DONE");
+        System.out.println("EXECUTION OF ALL TESTS IN HOUSEDTOFACADETEST DONE");
     }
 
     @BeforeEach
@@ -157,52 +157,27 @@ public class UserDTOFacadeTest {
     }
 
     @Test
-    void getAllUserDTOs() throws API_Exception {
-        List<UserDTO> actual = facade.getAllUsers();
-        int expected = 6;
+    void getAllHousesDTO() throws API_Exception {
+        System.out.println("Testing getAllHousesDTO...");
+        List<HouseDTO> actual = facade.getAllHouses();
+        int expected = 3;
         assertEquals(expected, actual.size());
     }
 
     @Test
-    void getUserDTOByUsernameTest() throws API_Exception {
-        UserDTO userDTO = facade.getUserByUserName(udto.getUserName());
-        assertEquals(udto, userDTO);
+    void getHouseByID() throws API_Exception {
+        System.out.println("Testing getHouseByIDDTO...");
+        HouseDTO testHouse = facade.getHouseByID(hdto1.getHouseID());
+        assertEquals(hdto1, testHouse);
     }
 
     @Test
-    void createUserDTOTest() throws API_Exception {
-        UserDTO userDTO = new UserDTO(new User("Fætter", "fætter@gmail.com", "test123"));
-        facade.createUser(userDTO);
-        assertNotNull(userDTO.getUserName());
-        int actualSize = facade.getAllUsers().size();
-        assertEquals(7, actualSize);
+    void createHouseDTOTest() throws API_Exception {
+        System.out.println("Testing createHouseDTOTest...");
+        HouseDTO newHouseDTO = new HouseDTO(new House("Testvej 7", "Testbyen", 4));
+        facade.createHouse(newHouseDTO);
+        int actualSize = facade.getAllHouses().size();
+        assertEquals(4, actualSize);
     }
 
-    @Test
-    void createNoDuplicateUserDTOsTest() throws API_Exception {
-        UserDTO userDTO = new UserDTO(new User("user", "user@gmail.com", "test123"));
-        assertThrows(API_Exception.class, () -> facade.createUser(userDTO));
-    }
-
-    @Test
-    void updateUserDTOTest() throws API_Exception {
-        UserDTO expected = new UserDTO(udto.getEntity());
-        expected.setUserEmail("testefar@gmail.com");
-        UserDTO actual = facade.updateUser(expected);
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void deleteUserDTOTest() throws API_Exception{
-        facade.deleteUser("user");
-        int actualSize = facade.getAllUsers().size();
-        assertEquals(5, actualSize);
-    }
-
-    @Test
-    void CantFindUserDTOToDelete() {
-        assertThrows(API_Exception.class, () -> facade.deleteUser("TestBruger"));
-    }
 }
-
-
