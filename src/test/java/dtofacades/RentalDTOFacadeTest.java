@@ -173,6 +173,7 @@ public class RentalDTOFacadeTest {
         assertEquals(4, actualSize);
     }
 
+
     @Test
     void assignRentalToHouseDTOTest() throws API_Exception {
         System.out.println("Testing assignRentalToHouseDTOTest - checking if the newly assigned HouseID is equal to the expected HouseID.");
@@ -180,6 +181,7 @@ public class RentalDTOFacadeTest {
         int actual = hdto3.getHouseID();
         assertEquals(rentalDTO.getHouse().getHouseID(), actual);
     }
+
 
     @Test
     void updateRentalDTOTest() throws API_Exception {
