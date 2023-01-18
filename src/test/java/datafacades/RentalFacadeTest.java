@@ -147,7 +147,7 @@ public class RentalFacadeTest {
 
     @Test
     void assignRentalToHouseTest() throws API_Exception {
-        System.out.println("Testing assignRentalToHouseTest - checking if the newly assigned HarbourID is equal to the expected HarbourID.");
+        System.out.println("Testing assignRentalToHouseTest - checking if the newly assigned House ID is equal to the expected House ID.");
         Rental rental = facade.assignRentalToHouse(rental1.getRentalID(), house3.getHouseID());
         int actual = house3.getHouseID();
         assertEquals(rental.getHouse().getHouseID(), actual);
@@ -155,7 +155,7 @@ public class RentalFacadeTest {
 
     @Test
     void assignRentalToTenantTest() throws API_Exception {
-        System.out.println("Testing assignRentalToTenantTest - checking if the newly assigned HarbourID is equal to the expected HarbourID.");
+        System.out.println("Testing assignRentalToTenantTest - checking if the newly assigned Tenant ID is equal to the expected Tenant ID.");
         Rental rental = facade.assignRentalToTenant(rental3.getRentalID(), tenant2.getTenantID());
         int actual = tenant2.getTenantID();
         assertEquals(rental.getHouse().getHouseID(), actual);
@@ -163,7 +163,7 @@ public class RentalFacadeTest {
 
     @Test
     void updateRentalTest() throws API_Exception {
-        System.out.println("Testing updateBoat...");
+        System.out.println("Testing updateRental...");
         Rental expected = new Rental(rental3.getRentalID(), "31-12-2019", "31-12-2028", 122000, 25000, "Olfert Treflo", house3);
         Rental actual = facade.updateRental(expected);
         assertEquals(expected, actual);
@@ -176,7 +176,4 @@ public class RentalFacadeTest {
         int actualSize = facade.getAllRentals().size();
         assertEquals(2, actualSize);
     }
-
-
-
 }
