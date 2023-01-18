@@ -160,7 +160,7 @@ public class RentalDTOFacadeTest {
     void getAllRentalsDTO() throws API_Exception {
         System.out.println("Testing getAllRentalsDTO...");
         List<RentalDTO> actual = facade.getAllRentals();
-        int expected = 4;
+        int expected = 3;
         assertEquals(expected, actual.size());
     }
 
@@ -170,7 +170,7 @@ public class RentalDTOFacadeTest {
         RentalDTO newRentalDTO = new RentalDTO(new Rental("31-12-2019", "31-12-2028", 200000, 50000, "Fætter Guf", house3));
         facade.createRental(newRentalDTO);
         int actualSize = facade.getAllRentals().size();
-        assertEquals(3, actualSize);
+        assertEquals(4, actualSize);
     }
 
     @Test
