@@ -51,7 +51,7 @@ public class Rental {
         this.house = house;
     }
 
-    public Rental(Integer rentalID, String rentalStartDate, String rentalEndDate, Integer rentalPriceAnnual, Integer rentalDeposit, String rentalContactPerson, House house, List<Tenant> tenants) {
+    public Rental(Integer rentalID, String rentalStartDate, String rentalEndDate, Integer rentalPriceAnnual, Integer rentalDeposit, String rentalContactPerson, House house) {
         this.rentalID = rentalID;
         this.rentalStartDate = rentalStartDate;
         this.rentalEndDate = rentalEndDate;
@@ -59,8 +59,8 @@ public class Rental {
         this.rentalDeposit = rentalDeposit;
         this.rentalContactPerson = rentalContactPerson;
         this.house = house;
-        this.tenants = tenants;
     }
+
 
     public Integer getRentalID() {
         return rentalID;

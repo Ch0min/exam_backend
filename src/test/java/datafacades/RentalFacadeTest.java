@@ -9,11 +9,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class UserFacadeTest {
+public class RentalFacadeTest {
     private static EntityManagerFactory emf;
-    private static UserFacade facade;
+    private static RentalFacade facade;
 
     Role userRole, adminRole;
     User admin, user, user2, user3, user4, user5;
@@ -21,18 +21,18 @@ public class UserFacadeTest {
     Rental rental1, rental2, rental3;
     Tenant tenant1, tenant2, tenant3, tenant4;
 
-    public UserFacadeTest() {
+    public RentalFacadeTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactoryForTest();
-        facade = UserFacade.getUserFacade(emf);
+        facade = RentalFacade.getRentalFacade(emf);
     }
 
     @AfterAll
     public static void tearDownClass() {
-        System.out.println("EXECUTION OF ALL TESTS IN USERFACADETEST DONE");
+        System.out.println("EXECUTION OF ALL TESTS IN RENTALFACADETEST DONE");
     }
 
     @BeforeEach
@@ -127,50 +127,56 @@ public class UserFacadeTest {
         System.out.println("EXECUTION OF TEST DONE");
     }
 
+
     @Test
-    void getAllUsersTest() throws API_Exception {
-        List<User> actual = facade.getAllUsers();
-        int expected = 6;
+    void getAllRentalsTest() throws API_Exception {
+        System.out.println("Testing getAllRentals...");
+        List<Rental> actual = facade.getAllRentals();
+        int expected = 3;
         assertEquals(expected, actual.size());
     }
 
     @Test
-    void getUserByUsernameTest() throws API_Exception {
-        User testUser = facade.getUserByUserName(user.getUserName());
-        assertEquals(user, testUser);
+    void createRentalTest() throws API_Exception {
+        System.out.println("Testing createRental...");
+        Rental newRental = new Rental("07-07-2017", "07-07-2077", 199000, 50000, "Fætter Guf", house3);
+        facade.createRental(newRental);
+        int actualSize = facade.getAllRentals().size();
+        assertEquals(4, actualSize);
     }
 
     @Test
-    void createUserTest() throws API_Exception {
-        User user = new User("Chomin", "test123");
-        facade.createUser(user);
-        assertNotNull(user.getUserName());
-        int actualSize = facade.getAllUsers().size();
-        assertEquals(7, actualSize);
+    void assignRentalToHouseTest() throws API_Exception {
+        System.out.println("Testing assignRentalToHouseTest - checking if the newly assigned HarbourID is equal to the expected HarbourID.");
+        Rental rental = facade.assignRentalToHouse(rental1.getRentalID(), house3.getHouseID());
+        int actual = house3.getHouseID();
+        assertEquals(rental.getHouse().getHouseID(), actual);
     }
 
     @Test
-    void createNoDuplicateUsersTest() {
-        User user = new User("mark", "test123");
-        assertThrows(API_Exception.class, () -> facade.createUser(user));
+    void assignRentalToTenantTest() throws API_Exception {
+        System.out.println("Testing assignRentalToTenantTest - checking if the newly assigned HarbourID is equal to the expected HarbourID.");
+        Rental rental = facade.assignRentalToTenant(rental3.getRentalID(), tenant2.getTenantID());
+        int actual = tenant2.getTenantID();
+        assertEquals(rental.getHouse().getHouseID(), actual);
     }
 
     @Test
-    void updateUserTest() throws API_Exception {
-        User expected = new User(user3.getUserName(), "testefar@test.com", "test123");
-        User actual = facade.updateUser(expected);
+    void updateRentalTest() throws API_Exception {
+        System.out.println("Testing updateBoat...");
+        Rental expected = new Rental(rental3.getRentalID(), "31-12-2019", "31-12-2028", 122000, 25000, "Olfert Treflo", house3);
+        Rental actual = facade.updateRental(expected);
         assertEquals(expected, actual);
     }
 
     @Test
-    void deleteUserTest() throws API_Exception {
-        facade.deleteUser("perle");
-        int actualSize = facade.getAllUsers().size();
-        assertEquals(6, actualSize);
+    void deleteRentalTest() throws API_Exception {
+        System.out.println("Testing deleteRentalTest...");
+        facade.deleteRental(rental3.getRentalID());
+        int actualSize = facade.getAllRentals().size();
+        assertEquals(2, actualSize);
     }
 
-    @Test
-    void cantFindUserToDeleteTest() {
-        assertThrows(API_Exception.class, () -> facade.deleteUser("TestBruger"));
-    }
+
+
 }
