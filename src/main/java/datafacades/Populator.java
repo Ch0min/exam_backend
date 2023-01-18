@@ -51,11 +51,13 @@ public class Populator {
         user5.addRole(userRole);
 
         tenant1.addRental(rental1);
+        tenant1.addRental(rental2);
         tenant2.addRental(rental1);
         tenant3.addRental(rental2);
         tenant4.addRental(rental3);
 
         tenant1.addHouse(house1);
+        tenant1.addHouse(house2);
         tenant2.addHouse(house1);
         tenant3.addHouse(house2);
         tenant4.addHouse(house3);
