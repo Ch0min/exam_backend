@@ -2,6 +2,7 @@ package datafacades;
 
 import entities.House;
 import entities.Rental;
+import entities.Tenant;
 import errorhandling.API_Exception;
 
 import javax.persistence.EntityManager;
@@ -38,6 +39,22 @@ public class RentalFacade {
         }
     }
 
+    public List<Rental> getRentalsByTenant(String tenatUserName) throws API_Exception {
+        EntityManager em = getEntityManager();
+
+        try {
+            TypedQuery<Rental> query = em.createQuery("SELECT r FROM Rental r JOIN r.tenants t " +
+                    "WHERE t.user.userName = :tenatUserName", Rental.class);
+            query.setParameter("tenatUserName", tenatUserName);
+            List<Rental> rentals = query.getResultList();
+            return rentals;
+        } catch (Exception e) {
+            throw new API_Exception("Can't find all Rentals for a specific User", 404, e);
+        } finally {
+            em.close();
+        }
+    }
+
     public Rental createRental(Rental rental) throws API_Exception {
         EntityManager em = getEntityManager();
         try {
@@ -67,6 +84,28 @@ public class RentalFacade {
             }
             if (house == null) {
                 throw new API_Exception("Can't find House with the ID: " + house.getHouseID(), 400, e);
+            }
+        } finally {
+            em.close();
+        }
+        return rental;
+    }
+
+    public Rental assignRentalToTenant(int rentalID, int TenantID) throws API_Exception {
+        EntityManager em = getEntityManager();
+        Rental rental = em.find(Rental.class, rentalID);
+        Tenant tenant = em.find(Tenant.class, TenantID);
+
+        try {
+            em.getTransaction().begin();
+            rental.assignTenant(tenant);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            if (rental == null) {
+                throw new API_Exception("Can't find Rental with the ID: " + rental.getRentalID(), 400, e);
+            }
+            if (tenant == null) {
+                throw new API_Exception("Can't find Tenant with the ID: " + tenant.getTenantID(), 400, e);
             }
         } finally {
             em.close();

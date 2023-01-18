@@ -28,6 +28,14 @@ public class RentalResource {
                 .type(MediaType.APPLICATION_JSON_TYPE.withCharset(StandardCharsets.UTF_8.name())).build();
     }
 
+    @GET
+    @Path("/{tenatUserName}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getRentalsByTenant(@PathParam("tenatUserName") String tenatUserName) throws API_Exception {
+        return Response.ok().entity(GSON.toJson(rentalDTOFacade.getRentalsByTenant(tenatUserName)))
+                .type(MediaType.APPLICATION_JSON_TYPE.withCharset(StandardCharsets.UTF_8.name())).build();
+    }
+
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -45,6 +53,16 @@ public class RentalResource {
     public Response assignRentalToHouse(@PathParam("rentalID") int rentalID,
                                         @PathParam("houseID") int houseID) throws API_Exception {
         return Response.ok().entity(GSON.toJson(rentalDTOFacade.assignRentalToHouse(rentalID, houseID)))
+                .type(MediaType.APPLICATION_JSON_TYPE.withCharset(StandardCharsets.UTF_8.name())).build();
+    }
+
+    @POST
+    @Path("/assignToTenant/{rentalID}/{tenantID}")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public Response assignRentalToTenant(@PathParam("rentalID") int rentalID,
+                                        @PathParam("tenantID") int tenantID) throws API_Exception {
+        return Response.ok().entity(GSON.toJson(rentalDTOFacade.assignRentalToTenant(rentalID, tenantID)))
                 .type(MediaType.APPLICATION_JSON_TYPE.withCharset(StandardCharsets.UTF_8.name())).build();
     }
 

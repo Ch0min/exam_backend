@@ -1,6 +1,7 @@
 package dtos;
 
 import entities.House;
+import entities.Tenant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ public class HouseDTO {
     private String houseCity;
     private int numberOfRooms;
     private List<String> rentals;
+    private List<TenantDTO> tenants = new ArrayList<>();
 
     public HouseDTO(House house) {
         if (house.getHouseID() != null) {
@@ -21,6 +23,11 @@ public class HouseDTO {
         this.houseCity = house.getHouseCity();
         this.numberOfRooms = house.getNumberOfRooms();
         this.rentals = house.getRentalsAsStrings();
+        if (house.getTenants().size() > 0) {
+            house.getTenants().forEach((tenant -> {
+                tenants.add(new TenantDTO(tenant));
+            }));
+        }
     }
 
     public House getEntity() {
@@ -32,7 +39,11 @@ public class HouseDTO {
         house.setHouseCity(this.houseCity);
         house.setNumberOfRooms(this.numberOfRooms);
         house.getRentalsAsStrings();
-
+        if(this.tenants != null){
+            List<Tenant> tenantsList = new ArrayList<>();
+            this.tenants.forEach(tenantDTO -> tenantsList.add(tenantDTO.getEntity()));
+            house.setTenants(tenantsList);
+        }
         return house;
     }
 
@@ -83,6 +94,14 @@ public class HouseDTO {
         this.rentals = rentals;
     }
 
+    public List<TenantDTO> getTenants() {
+        return tenants;
+    }
+
+    public void setTenants(List<TenantDTO> tenants) {
+        this.tenants = tenants;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -104,6 +123,7 @@ public class HouseDTO {
                 ", houseCity='" + houseCity + '\'' +
                 ", numberOfRooms=" + numberOfRooms +
                 ", rentals=" + rentals +
+                ", tenants=" + tenants +
                 '}';
     }
 }

@@ -3,7 +3,6 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtofacades.TenantDTOFacade;
-import dtos.HouseDTO;
 import dtos.TenantDTO;
 import errorhandling.API_Exception;
 import utils.EMF_Creator;
@@ -30,7 +29,15 @@ public class TenantResource {
     }
 
     @GET
-    @Path("/{houseID}")
+    @Path("/{tenantID}")
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getTenantsByID(@PathParam("tenantID") int tenantID) throws API_Exception {
+        return Response.ok().entity(GSON.toJson(tenantDTOFacade.getTenantByID(tenantID)))
+                .type(MediaType.APPLICATION_JSON_TYPE.withCharset(StandardCharsets.UTF_8.name())).build();
+    }
+
+    @GET
+    @Path("/house/{houseID}")
     @Produces({MediaType.APPLICATION_JSON})
     public Response getTenantsByHouse(@PathParam("houseID") int houseID) throws API_Exception {
         return Response.ok().entity(GSON.toJson(tenantDTOFacade.getTenantsByHouse(houseID)))

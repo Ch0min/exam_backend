@@ -133,8 +133,10 @@ public class Rental {
         }
     }
 
-    public void addTenant(Tenant rentalTenant) {
-        tenants.add(rentalTenant);
+    public void assignTenant(Tenant tenant) {
+        if (tenant != null) {
+            tenant.getRentals().add(this);
+        }
     }
 
 

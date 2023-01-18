@@ -41,14 +41,45 @@ Content-Type: application/json
 
 
 
-##### ***XXXX ENDPOINTS*** #####
+##### ***TENANT ENDPOINTS*** #####
 
 
+### GET TENANT BY ID
+GET http://localhost:8080/api/tenants/1
+Content-Type: application/json
 
+### CREATE TENANT
+POST http://localhost:8080/api/tenants/
+Content-Type: application/json
 
-##### ***XXXX ENDPOINTS*** #####
+{
+  "tenantName": "Fætter Guf ",
+  "tenantPhone": 29842984,
+  "tenantJob": "Sligmager",
+  "user": {
+    "userName": "fætterguf"
+  }
+}
 
+##### ***RENTAL ENDPOINTS*** #####
 
+### UPDATE RENTAL
+PUT http://localhost:8080/api/rentals/update/3
+Content-Type: application/json
+
+{
+  "rentalStartDate": "31-12-2000",
+  "rentalEndDate": "31-12-2100",
+  "rentalPriceAnnual": 150000,
+  "rentalDeposit": 25000,
+  "rentalContactPerson": "Olfert Treflo",
+  "house": {
+    "houseID": 3,
+    "tenants": {
+        "tenantID": 4
+      }
+  }
+}
 
 
 ##### ***XXXX ENDPOINTS*** #####

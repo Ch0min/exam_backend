@@ -47,6 +47,7 @@ public class Populator {
         admin.addRole(adminRole);
         user.addRole(userRole);
         user2.addRole(adminRole);
+        user2.addRole(userRole);
         user3.addRole(userRole);
         user4.addRole(userRole);
         user5.addRole(userRole);
@@ -56,7 +57,10 @@ public class Populator {
         tenant3.addRental(rental2);
         tenant4.addRental(rental3);
 
-        rental2.addTenant(tenant4);
+        tenant1.addHouse(house1);
+        tenant2.addHouse(house1);
+        tenant3.addHouse(house2);
+        tenant4.addHouse(house3);
 
         // Persisting
         em.persist(userRole);

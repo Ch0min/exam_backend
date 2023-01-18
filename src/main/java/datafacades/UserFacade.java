@@ -80,7 +80,7 @@ public class UserFacade {
             em.persist(user);
             em.getTransaction().commit();
         } catch (Exception e) {
-            throw new API_Exception("Can't creaste user. There's already a user with the username: " + user.getUserName() + " in the system");
+            throw new API_Exception("Can't create user. There's already a user with the username: " + user.getUserName() + " in the system");
         } finally {
             em.close();
         }

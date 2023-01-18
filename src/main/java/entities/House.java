@@ -26,6 +26,12 @@ public class House {
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL)
     private List<Rental> rentals = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(name = "tenant_house",
+            joinColumns = @JoinColumn(name = "house_id"),
+            inverseJoinColumns = @JoinColumn(name = "tenant_id"))
+    private List<Tenant> tenants = new ArrayList<>();
+
     public House() {
     }
 
@@ -106,6 +112,14 @@ public class House {
         this.rentals = rentals;
     }
 
+    public List<Tenant> getTenants() {
+        return tenants;
+    }
+
+    public void setTenants(List<Tenant> tenants) {
+        this.tenants = tenants;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,6 +141,7 @@ public class House {
                 ", houseCity='" + houseCity + '\'' +
                 ", numberOfRooms=" + numberOfRooms +
                 ", rentals=" + rentals +
+                ", tenants=" + tenants +
                 '}';
     }
 }

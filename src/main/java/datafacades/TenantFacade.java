@@ -1,6 +1,7 @@
 package datafacades;
 
 import entities.Tenant;
+import entities.User;
 import errorhandling.API_Exception;
 
 import javax.persistence.EntityManager;
@@ -37,6 +38,17 @@ public class TenantFacade {
         } catch (Exception e) {
             throw new API_Exception("Can't find any Tenants in the system", 404, e);
         }
+    }
+
+    public Tenant getTenantByID(int tenantID) throws API_Exception {
+        EntityManager em = getEntityManager();
+        try{
+            Tenant t = em.find(Tenant.class, tenantID);
+            return t;
+        } catch (Exception e){
+            throw new API_Exception("Can't find a Tenant with the ID: " + tenantID, 404, e);
+        }
+
     }
 
     public List<Tenant> getTenantsByHouse(int houseID) throws API_Exception {
