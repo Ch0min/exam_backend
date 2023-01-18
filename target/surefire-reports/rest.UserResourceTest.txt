@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: rest.UserResourceTest
 -------------------------------------------------------------------------------
-Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.925 s - in rest.UserResourceTest
+Tests run: 9, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 15.11 s <<< FAILURE! - in rest.UserResourceTest
+getAllUsersTest  Time elapsed: 1.889 s  <<< FAILURE!
+java.lang.AssertionError: 
+
+Expected: iterable over [<UserDTO{userName='user', userEmail='user@gmail.com', userPass='$2a$10$8ZC5k9t.EztZH9AkPFeVLOevnxb.4jIMMwiEuDxK0y3MyWgQGqJQS', roleList=[user]}>, <UserDTO{userName='admin', userEmail='admin@gmail.com', userPass='$2a$10$uHIPTEcz9GpynwvxQpMsA.kSODfjIAokUpvYJz97enhOj20jeWXo2', roleList=[admin]}>] in any order
+     but: Not matched: <UserDTO{userName='fido', userEmail='fido@gmail.com', userPass='$2a$10$AC.53/6LJeWfSezkTCchfe3XetyilhKGU7.I9Lyitm2f9eIpfkwqO', roleList=[user]}>
+	at rest.UserResourceTest.getAllUsersTest(UserResourceTest.java:229)
+

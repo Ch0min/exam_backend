@@ -226,7 +226,7 @@ public class UserResourceTest {
                 .get("/users/all")
                 .then()
                 .extract().body().jsonPath().getList("", UserDTO.class);
-        assertThat(usersDTOS, containsInAnyOrder(udto, udtoAdmin));
+        assertThat(usersDTOS, containsInAnyOrder(udtoAdmin, udto, udto2, udto3, udto4, udto5));
     }
 
     @Test
