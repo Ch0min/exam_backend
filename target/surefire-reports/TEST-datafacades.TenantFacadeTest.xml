@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="datafacades.UserFacadeTest" time="4.41" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="datafacades.TenantFacadeTest" time="4.48" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -62,11 +62,7 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="createNoDuplicateUsersTest" classname="datafacades.UserFacadeTest" time="0.677"/>
-  <testcase name="getAllUsersTest" classname="datafacades.UserFacadeTest" time="0.578"/>
-  <testcase name="updateUserTest" classname="datafacades.UserFacadeTest" time="0.699"/>
-  <testcase name="createUserTest" classname="datafacades.UserFacadeTest" time="0.676"/>
-  <testcase name="cantFindUserToDeleteTest" classname="datafacades.UserFacadeTest" time="0.606"/>
-  <testcase name="getUserByUsernameTest" classname="datafacades.UserFacadeTest" time="0.573"/>
-  <testcase name="deleteUserTest" classname="datafacades.UserFacadeTest" time="0.596"/>
+  <testcase name="getTenantsByIDTest" classname="datafacades.TenantFacadeTest" time="0.641"/>
+  <testcase name="createTenantTest" classname="datafacades.TenantFacadeTest" time="0.623"/>
+  <testcase name="getAllTenantsTest" classname="datafacades.TenantFacadeTest" time="0.627"/>
 </testsuite>

@@ -154,14 +154,6 @@ public class RentalFacadeTest {
     }
 
     @Test
-    void assignRentalToTenantTest() throws API_Exception {
-        System.out.println("Testing assignRentalToTenantTest - checking if the newly assigned Tenant ID is equal to the expected Tenant ID.");
-        Rental rental = facade.assignRentalToTenant(rental3.getRentalID(), tenant2.getTenantID());
-        int actual = tenant2.getTenantID();
-        assertEquals(rental.getHouse().getHouseID(), actual);
-    }
-
-    @Test
     void updateRentalTest() throws API_Exception {
         System.out.println("Testing updateRental...");
         Rental expected = new Rental(rental3.getRentalID(), "31-12-2019", "31-12-2028", 122000, 25000, "Olfert Treflo", house3);

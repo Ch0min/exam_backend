@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: datafacades.UserFacadeTest
+Test set: datafacades.HouseFacadeTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.41 s - in datafacades.UserFacadeTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.777 s - in datafacades.HouseFacadeTest

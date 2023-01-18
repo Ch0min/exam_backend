@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: datafacades.RentalFacadeTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.617 s <<< FAILURE! - in datafacades.RentalFacadeTest
+assignRentalToTenantTest  Time elapsed: 0.616 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <21> but was: <27>
+	at datafacades.RentalFacadeTest.assignRentalToTenantTest(RentalFacadeTest.java:161)
+

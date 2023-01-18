@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="datafacades.UserFacadeTest" time="4.41" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="dtofacades.RentalDTOFacadeTest" time="9.462" tests="5" errors="0" skipped="0" failures="2">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -62,11 +62,23 @@
     <property name="java.class.version" value="55.0"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
   </properties>
-  <testcase name="createNoDuplicateUsersTest" classname="datafacades.UserFacadeTest" time="0.677"/>
-  <testcase name="getAllUsersTest" classname="datafacades.UserFacadeTest" time="0.578"/>
-  <testcase name="updateUserTest" classname="datafacades.UserFacadeTest" time="0.699"/>
-  <testcase name="createUserTest" classname="datafacades.UserFacadeTest" time="0.676"/>
-  <testcase name="cantFindUserToDeleteTest" classname="datafacades.UserFacadeTest" time="0.606"/>
-  <testcase name="getUserByUsernameTest" classname="datafacades.UserFacadeTest" time="0.573"/>
-  <testcase name="deleteUserTest" classname="datafacades.UserFacadeTest" time="0.596"/>
+  <testcase name="updateRentalDTOTest" classname="dtofacades.RentalDTOFacadeTest" time="1.535"/>
+  <testcase name="createRentalDTOTest" classname="dtofacades.RentalDTOFacadeTest" time="2.176">
+    <failure message="expected: &lt;3&gt; but was: &lt;4&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <3> but was: <4>
+	at dtofacades.RentalDTOFacadeTest.createRentalDTOTest(RentalDTOFacadeTest.java:173)
+]]></failure>
+    <system-out><![CDATA[Testing createBoatDTO...
+EXECUTION OF TEST DONE
+]]></system-out>
+  </testcase>
+  <testcase name="assignRentalToHouseDTOTest" classname="dtofacades.RentalDTOFacadeTest" time="1.679"/>
+  <testcase name="getAllRentalsDTO" classname="dtofacades.RentalDTOFacadeTest" time="2.134">
+    <failure message="expected: &lt;4&gt; but was: &lt;3&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <4> but was: <3>
+	at dtofacades.RentalDTOFacadeTest.getAllRentalsDTO(RentalDTOFacadeTest.java:164)
+]]></failure>
+    <system-out><![CDATA[Testing getAllRentalsDTO...
+EXECUTION OF TEST DONE
+]]></system-out>
+  </testcase>
+  <testcase name="deleteRentalDTOTest" classname="dtofacades.RentalDTOFacadeTest" time="1.934"/>
 </testsuite>

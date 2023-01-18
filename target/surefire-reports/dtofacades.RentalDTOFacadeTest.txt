@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: dtofacades.RentalDTOFacadeTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 9.462 s <<< FAILURE! - in dtofacades.RentalDTOFacadeTest
+createRentalDTOTest  Time elapsed: 2.176 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <3> but was: <4>
+	at dtofacades.RentalDTOFacadeTest.createRentalDTOTest(RentalDTOFacadeTest.java:173)
+
+getAllRentalsDTO  Time elapsed: 2.134 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <4> but was: <3>
+	at dtofacades.RentalDTOFacadeTest.getAllRentalsDTO(RentalDTOFacadeTest.java:164)
+
