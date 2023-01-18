@@ -153,6 +153,7 @@ public class RentalFacadeTest {
         assertEquals(rental.getHouse().getHouseID(), actual);
     }
 
+
     @Test
     void updateRentalTest() throws API_Exception {
         System.out.println("Testing updateRental...");
@@ -160,6 +161,7 @@ public class RentalFacadeTest {
         Rental actual = facade.updateRental(expected);
         assertEquals(expected, actual);
     }
+
 
     @Test
     void deleteRentalTest() throws API_Exception {
