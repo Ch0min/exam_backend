@@ -35,5 +35,10 @@ public class ApplicationConfig extends Application {
 
         resources.add(LoginResource.class);
         resources.add(UserResource.class);
+        resources.add(RentalResource.class);
+        resources.add(HouseResource.class);
+        resources.add(TenantResource.class);
+
+
     }
 }
